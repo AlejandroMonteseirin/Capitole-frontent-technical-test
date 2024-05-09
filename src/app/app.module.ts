@@ -15,23 +15,38 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+
+// Custom Pipes
+import { CapitalizeFirstPipe } from 'src/app/customPipes/capitalizeFirstPipe'; // Importa el pipe
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesListComponent,
-    HeroesTableComponent
+    HeroesTableComponent,
+    CapitalizeFirstPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule, //cards
-    MatTableModule, //tables
-    MatFormFieldModule, //form field (input filter)
-    MatPaginatorModule, //paginator
-    MatInputModule, //filter input
-    MatProgressSpinnerModule //spinner when loading
+    MatCardModule, // cards
+    MatTableModule, // tables
+    MatFormFieldModule, // form field (input filter)
+    MatPaginatorModule, // paginator
+    MatInputModule, // filter input
+    MatProgressSpinnerModule, // spinner when loading
+    MatSortModule, // sort in the table
+    MatSnackBarModule, // notifications
+    MatButtonModule, // buttons
+    MatIconModule, // icons
+    FormsModule // ngModel
   ],
   providers: [],
   bootstrap: [AppComponent]

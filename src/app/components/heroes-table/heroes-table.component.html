@@ -1,8 +1,13 @@
 <div class="heroeTableContainer">
-    <mat-form-field>
+    <mat-form-field class="filterTable">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <input matInput type="text" [(ngModel)]="filterValue" (keydown.enter)="applyFilter()">
+        <button matSuffix mat-icon-button aria-label="filter" [disabled]="filterValue=== ''" (click)="applyFilter()">
+            <mat-icon>search</mat-icon>
+        </button>
+
     </mat-form-field>
+
 
     <div class="mat-elevation-z8">
         <div class="loadingTable" *ngIf="loading">
@@ -17,11 +22,21 @@
                 <td mat-cell *matCellDef="let row"> {{row.id}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                <td mat-cell *matCellDef="let row"> <button mat-raised-button color="primary"
+                        (click)="editHeroe(row.id)">Edit</button>
+                    <button style="margin-left: 2em;" mat-raised-button color="warn"
+                        (click)="deleteHeroe(row.id)">Delete</button>
+                </td>
+            </ng-container>
+
+
 
             <!-- Name Column -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.name | capitalizeFirst }} </td>
             </ng-container>
 
 
@@ -30,7 +45,7 @@
 
             <!-- Row shown when there is no matching data. -->
             <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                <td class="mat-cell" colspan="4">No Heroes matching the filter "{{filterValue}}"</td>
             </tr>
         </table>
 

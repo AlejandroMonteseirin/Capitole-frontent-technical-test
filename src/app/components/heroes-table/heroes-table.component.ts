@@ -16,7 +16,9 @@ export interface HeroeData {
 
 })
 export class HeroesTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name'];
+  filterValue: string = '';
+
+  displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource: MatTableDataSource<HeroeData>;
 
   loading = false;
@@ -27,7 +29,7 @@ export class HeroesTableComponent implements AfterViewInit {
   constructor() {
     // Create 10 heroes
     const heroes: HeroeData[] = [];
-    for (let i = 1; i <= 10; i++) { heroes.push(this.createNewHeroe(i)); }
+    for (let i = 0; i <= 10; i++) { heroes.push(this.createNewHeroe(i)); }
 
 
 
@@ -40,8 +42,11 @@ export class HeroesTableComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter() {
+    if (this.filterValue === "") {
+      return;
+    }
+    const filterValue = this.filterValue;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -58,12 +63,23 @@ export class HeroesTableComponent implements AfterViewInit {
 
 
   private createNewHeroe(id: number): HeroeData {
-    const name = "test-" + id;
+    const name = "Heroe-" + (1 + id);
 
     return {
       id: id.toString(),
       name: name
     };
+  }
+
+
+
+
+  public editHeroe(id: number): void {
+    return;
+  }
+
+  public deleteHeroe(id: number): void {
+    return;
   }
 
 
