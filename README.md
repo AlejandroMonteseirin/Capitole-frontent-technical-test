@@ -20,7 +20,7 @@ Angular project in the latest LTS version (At the moment of the creation of this
 
     - The filter is made from the Angular Material preset filter, and due to the requirement of "*minimizing the ammount of times that the events is lauched*" I have used a "keydown.enter" instead of "keyup" this way the filter launches when enter is pressed in the keyboard. Also, a button has been added that launch the filter to improve the user experience.
     - The list consists of an Angular Material Table, with pagination and sorting. The pagination is done in the frontend for this prototype, if a lot of heroes is going to be added in the future, it will be recommended to paginate in the Server-Side to avoid overloading the frontend.
-    - To complete the requiriment "*The first letter of the heroes must be capitalized*" I created a custom pipe "capitalizeFirst" and added in the name like this {{row.name | capitalizeFirst }}
+    - To complete the requiriment "*The first letter of the heroes must be capitalized*" I created a custom pipe "capitalizeFirst" and added in the name like this {{row.name | capitalizeFirst }}. However, later I found that there are a default pipe in angular called "titlecase", in any case I have left the custom pipe to show how to develop customs pipes.
     this way the name allways will have the first letter capitalized despite being not capitalized from the backend without modifying  the original value.
 
 

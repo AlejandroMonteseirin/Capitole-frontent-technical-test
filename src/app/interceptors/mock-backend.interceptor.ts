@@ -29,11 +29,11 @@ export class MockBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log("HttpMockRequest", request);
     // Get heroes
-    if (request.url.endsWith('/heroes') && request.method === 'GET') {
+    if (request.method === 'GET') {
       return this.getHeroes();
     }
     // Post heroes
-    if (request.url.endsWith('/heroes') && request.method === 'POST') {
+    if (request.method === 'POST') {
       return this.insertHeroes(request.body);
     }
     // Delete heroe

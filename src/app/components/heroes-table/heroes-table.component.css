@@ -1,5 +1,6 @@
 .heroeTableContainer {
-    margin: 10%;
+    margin-top: 0%;
+    margin: 5%;
 }
 
 .loadingTable {
@@ -19,3 +20,12 @@
     padding: 1em;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
+/** avoid the page changin size when the table is loading */
+.mainTable {
+    min-height: 300px;
+
+}

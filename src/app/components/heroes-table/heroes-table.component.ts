@@ -1,4 +1,3 @@
-import { HttpResponse } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,7 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HeroeModel } from 'src/app/models/heroeModel';
 import { MockApiService } from 'src/app/services/mock-api.service';
-
 
 
 @Component({
@@ -28,6 +26,7 @@ export class HeroesTableComponent implements AfterViewInit {
 
   constructor(private mockApiService: MockApiService, private snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource();
+
   }
   ngAfterViewInit() {
 
@@ -38,9 +37,6 @@ export class HeroesTableComponent implements AfterViewInit {
   }
 
   applyFilter() {
-    if (this.filterValue === "") {
-      return;
-    }
     const filterValue = this.filterValue;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -63,7 +59,7 @@ export class HeroesTableComponent implements AfterViewInit {
       { id: 8, name: 'Thor' },
       { id: 9, name: 'Black Widow' },
       { id: 10, name: 'Wolverine' }
-    ];;
+    ];
 
     this.mockApiService.postHeroes(heroes).subscribe({
       next: (response) => {
