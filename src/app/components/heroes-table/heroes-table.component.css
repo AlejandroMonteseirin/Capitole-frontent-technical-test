@@ -13,3 +13,9 @@
     width: 100%;
     display: inline-block;
 }
+
+.insertMockHeroes {
+    text-align: center;
+    padding: 1em;
+}
+

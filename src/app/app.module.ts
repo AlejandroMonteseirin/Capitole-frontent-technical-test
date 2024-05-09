@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroesListComponent } from './pages/heroes-list/heroes-list.component';
-
 import { HeroesTableComponent } from './components/heroes-table/heroes-table.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // Angular Material
 import { MatTableModule } from '@angular/material/table';
@@ -23,6 +23,9 @@ import { FormsModule } from '@angular/forms';
 
 // Custom Pipes
 import { CapitalizeFirstPipe } from 'src/app/customPipes/capitalizeFirstPipe'; // Importa el pipe
+
+// Interceptors
+import { fakeBackendProvider } from './interceptors/mock-backend.interceptor';
 
 
 @NgModule({
@@ -46,9 +49,10 @@ import { CapitalizeFirstPipe } from 'src/app/customPipes/capitalizeFirstPipe'; /
     MatSnackBarModule, // notifications
     MatButtonModule, // buttons
     MatIconModule, // icons
-    FormsModule // ngModel
+    FormsModule, // ngModel
+    HttpClientModule // http client
   ],
-  providers: [],
+  providers: [fakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
