@@ -1,6 +1,6 @@
 # CapitoleFrontentTechnicalTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+Angular project in the latest LTS version (At the moment of the creation of this test 16.2.12), Node 18.20.2 LTS
 
 ## Development server
 
