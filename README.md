@@ -57,8 +57,13 @@ A mock backend was created using a custom interceptor (mock-backend.interceptor.
 
 ## Tests
 
-Karma testing is Operational, and a few example tests had been added. Attached screenshot of the results.
+For unit tests I used Karma Jasmine. All basic tests are operational, and a few example extra tests had been added. Attached screenshot of the results.
 To run karma just *ng test* in the folder of the project
+
+
+For e2e Testing I used Cypress, and done a simple test that inicialice the data and checks for Spiderman hero to appear, attached video of cypress working. To run cypress, use "ng e2e"
+![Cypress Testing](/readme_assets/cypressTesting.gif)
+
 
 #### Sources and resources:
     - Angular Material: https://material.angular.io/guides
