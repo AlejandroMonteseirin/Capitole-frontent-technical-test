@@ -37,7 +37,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
         }
         break;
       case 'POST':
-        if (request.url.endsWith('api/heroes/')) {
+        if (request.url.endsWith('api/heroes')) {
           return this.insertHeroes(request.body);
         }
         if (request.url.endsWith('api/heroes/new')) {

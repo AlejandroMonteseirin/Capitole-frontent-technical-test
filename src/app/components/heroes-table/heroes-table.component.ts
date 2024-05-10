@@ -13,7 +13,7 @@ import { DeleteConfirmationComponent } from '../dialogs/delete-confirmation/dele
 @Component({
   selector: 'app-heroes-table',
   templateUrl: './heroes-table.component.html',
-  styleUrls: ['./heroes-table.component.css'],
+  styleUrls: ['./heroes-table.component.scss'],
 
 })
 export class HeroesTableComponent implements AfterViewInit {

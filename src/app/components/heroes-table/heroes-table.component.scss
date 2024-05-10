@@ -1,14 +1,17 @@
-.heroeTableContainer {
+.tableContainer {
     margin-top: 0%;
     margin: 5%;
+
+    &__filter {
+        width: 100%;
+        display: inline-block;
+    }
+
+
 }
 
 
 
-.filterTable {
-    width: 100%;
-    display: inline-block;
-}
 
 .insertMockHeroes {
     text-align: center;
@@ -20,10 +23,7 @@
 }
 
 /** avoid the page changin size when the table is loading */
-.mainTable {
-    min-height: 300px;
 
-}
 
 .loadingTable {
     display: flex;

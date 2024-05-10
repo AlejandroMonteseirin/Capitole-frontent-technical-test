@@ -24,6 +24,7 @@ export class MockApiService {
   deleteHeroe(id: number): Observable<HeroeModel> {
     return this.http.delete<HeroeModel>(this.heroesUrl + '/' + id);
   }
+  //mock bulk heroes
   postHeroes(heroes: HeroeModel[]): Observable<HeroeModel[]> {
     return this.http.post<HeroeModel[]>(this.heroesUrl, heroes);
   }

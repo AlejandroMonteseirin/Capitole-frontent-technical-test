@@ -16,10 +16,10 @@ body {
 
 
 /* material angular grid, new clases to align content */
-.mat-grid-tile.content-left .mat-grid-tile-content {
+.mat-grid-tile.grid__content-left .mat-grid-tile-content {
     justify-content: flex-start;
 }
 
-.mat-grid-tile.content-right .mat-grid-tile-content {
+.mat-grid-tile.grid__content-right .mat-grid-tile-content {
     justify-content: flex-end;
 }

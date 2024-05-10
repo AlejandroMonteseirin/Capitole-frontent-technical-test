@@ -5,8 +5,8 @@
 </div>
 
 
-<div class="heroeTableContainer">
-    <mat-form-field class="filterTable">
+<div class="tableContainer">
+    <mat-form-field class="tableContainer__filter">
         <mat-label>Filter</mat-label>
         <input matInput type="text" [(ngModel)]="filterValue" (keydown.enter)="applyFilter()">
         <button matSuffix mat-icon-button aria-label="filter" [disabled]="filterValue=== ''" (click)="applyFilter()">
@@ -17,8 +17,7 @@
 
     <div class="mat-elevation-z8">
 
-
-        <table mat-table [dataSource]="dataSource" matSort class="mainTable">
+        <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- ID Column -->
             <ng-container matColumnDef="id">
