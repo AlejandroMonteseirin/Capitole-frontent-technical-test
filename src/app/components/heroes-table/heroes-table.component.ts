@@ -1,10 +1,13 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { HeroeModel } from 'src/app/models/heroeModel';
 import { MockApiService } from 'src/app/services/mock-api.service';
+import { DeleteConfirmationComponent } from '../dialogs/delete-confirmation/delete-confirmation.component';
 
 
 @Component({
@@ -14,17 +17,18 @@ import { MockApiService } from 'src/app/services/mock-api.service';
 
 })
 export class HeroesTableComponent implements AfterViewInit {
-  filterValue: string = '';
 
+  // Table elements
+  filterValue: string = '';
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource: MatTableDataSource<HeroeModel>;
-
-  loading = true;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private mockApiService: MockApiService, private snackBar: MatSnackBar) {
+
+  loading = true;
+
+  constructor(private mockApiService: MockApiService, private snackBar: MatSnackBar, private router: Router, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
 
   }
@@ -90,22 +94,29 @@ export class HeroesTableComponent implements AfterViewInit {
   }
 
   deleteHeroe(id: number): void {
-    this.loading = true;
-    this.mockApiService.deleteHeroe(id).subscribe(() => {
-      this.snackBar.open('Heroe Deleted successfully', 'Close');
-      this.getHeroes();
-    });
+    this.dialog
+      .open(DeleteConfirmationComponent, {
+        data: `¿Are you sure you want to delete this Hero?`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.loading = true;
+          this.mockApiService.deleteHeroe(id).subscribe(() => {
+            this.snackBar.open('Heroe Deleted successfully', 'Close');
+            this.getHeroes();
+          });
+        }
+      });
   }
 
+  createHeroe() {
+    this.router.navigate(['/heroesNew']);
 
+  }
 
-
-
-
-
-
-  public editHeroe(id: number): void {
-    return;
+  editHeroe(id: number): void {
+    this.router.navigate(['/heroesEdit/' + id]);
   }
 
 

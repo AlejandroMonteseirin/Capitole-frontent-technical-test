@@ -5,14 +5,16 @@ Angular project in the latest LTS version (At the moment of the creation of this
 
 ## How to run the project
 
-- git clone the project  
-- open a console a use the command "npm install" in the project folder
-- open a console a use the command "npm serve" in the project folder
-- open a console a use the command "json-server --watch db.json" in the project folder (that commands lauches the mock api backend, if you dont launch it the app will show error while doing operations as the backend is not accesible)
-
+- Git clone the project, or download it. 
+- Open a console a use the command "npm install" in the project folder
+- Open a console a use the command "npm serve" in the project folder
+- Navigate to `http://localhost:4200/`.
 
 
 ## Project Structure:
+
+*Aclaration:* 
+The whole project have a bit of over-engineering, this is not because I can't make it simpler, but rather to show my knowledge in all aspects of angular. (for example: adding Lazy loading to all the components is probably disproportionate to this project. However, I wanted to show that I am familiar with Lazy loading. The same occurs with interceptors, customPipes, sharedModule...).
 
 
 ### Filter and Listing
@@ -23,14 +25,17 @@ Angular project in the latest LTS version (At the moment of the creation of this
     - To complete the requiriment "*The first letter of the heroes must be capitalized*" I created a custom pipe "capitalizeFirst" and added in the name like this {{row.name | capitalizeFirst }}. However, later I found that there are a default pipe in angular called "titlecase", in any case I have left the custom pipe to show how to develop customs pipes.
     this way the name allways will have the first letter capitalized despite being not capitalized from the backend without modifying  the original value.
 
-
-
-
-
-
 ## Service
 
-A mock backend was created using "json-server" a npm package to simulate a Api
+A mock backend was created using a custom interceptor
+
+
+
+#### Sources and resources:
+    - Angular Material: https://material.angular.io/guides
+    - Angular documentation: https://angular.io/docs
+    - Fake backend using interceptors: https://jasonwatmore.com/post/2022/11/30/angular-14-fake-backend-api-to-intercept-http-requests-in-development
+
 
 
 ## Development server

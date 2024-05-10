@@ -28,17 +28,35 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log("HttpMockRequest", request);
-    // Get heroes
-    if (request.method === 'GET') {
-      return this.getHeroes();
-    }
-    // Post heroes
-    if (request.method === 'POST') {
-      return this.insertHeroes(request.body);
-    }
-    // Delete heroe
-    if (request.method === 'DELETE') {
-      return this.deleteHeroe(this.idFromUrl(request.url))
+    switch (request.method) {
+      case 'GET':
+        if (request.url.endsWith('api/heroes')) {
+          return this.getHeroes();
+        } else if (request.url.startsWith('api/heroes/')) {
+          return this.getHeroById(this.idFromUrl(request.url));
+        }
+        break;
+      case 'POST':
+        if (request.url.endsWith('api/heroes/')) {
+          return this.insertHeroes(request.body);
+        }
+        if (request.url.endsWith('api/heroes/new')) {
+          return this.createHero(request.body);
+        }
+        break;
+      case 'PUT':
+        if (request.url.startsWith('api/hero')) {
+          // Aquí extraemos el id del URL
+          return this.editHeroe(request.body);
+        }
+        break;
+      case 'DELETE':
+        if (request.url.startsWith('api/hero')) {
+          // Aquí extraemos el id del URL
+          const id = this.idFromUrl(request.url);
+          return this.deleteHeroe(id);
+        }
+        break;
     }
 
 
@@ -47,15 +65,27 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
 
   getHeroes(): Observable<any> {
-    // Simulate a delay of 1 seconds
     return this.ok(JSON.parse(localStorage.getItem(heroesKey) || '[]'));
+  }
+
+  getHeroById(id: number): Observable<any> {
+    let heroes = JSON.parse(localStorage.getItem(heroesKey) || '[]');
+    let heroe = heroes.find((heroe: HeroeModel) => heroe.id === id);
+    return this.ok(heroe);
   }
 
   deleteHeroe(id: number): Observable<any> {
     let heroes = JSON.parse(localStorage.getItem(heroesKey) || '[]');
     let newHeroes = heroes.filter((heroe: HeroeModel) => heroe.id !== id);
     localStorage.setItem(heroesKey, JSON.stringify(newHeroes));
-    // Simulate a delay of 1 seconds
+    return this.ok();
+  }
+
+  editHeroe(heroeModified: HeroeModel): Observable<any> {
+    let heroes = JSON.parse(localStorage.getItem(heroesKey) || '[]');
+    let hero = heroes.find((hero: HeroeModel) => hero.id == heroeModified.id);
+    hero.name = heroeModified.name;
+    localStorage.setItem(heroesKey, JSON.stringify(heroes));
     return this.ok();
   }
 
@@ -68,6 +98,28 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
     let heroesList = JSON.parse(localStorage.getItem(heroesKey) || '[]');
     heroesList = heroesList.concat(heroes);
+    localStorage.setItem(heroesKey, JSON.stringify(heroesList));
+
+    return this.ok();
+  }
+  createHero(hero: HeroeModel): Observable<any> {
+
+    let heroesList: HeroeModel[] = JSON.parse(localStorage.getItem(heroesKey) || '[]');
+
+    // name validation
+    if (!hero.name || hero.name.trim().length < 2) {
+      return this.error('Invalid name');
+    }
+
+
+    // Name must be unique
+    const existingNames = new Set(heroesList.map(hero => hero.name.toLowerCase()));
+    if (existingNames.has(hero.name.toLowerCase())) {
+      return this.error('Heroe with this name already exist');
+    }
+
+    hero.id = this.findNewId(heroesList);
+    heroesList.push(hero);
     localStorage.setItem(heroesKey, JSON.stringify(heroesList));
 
     return this.ok();
@@ -94,6 +146,22 @@ export class MockBackendInterceptor implements HttpInterceptor {
     const urlParts = url.split('/');
     return parseInt(urlParts[urlParts.length - 1]);
   }
+
+
+  // get the first available ID (this is enough for mock purposes)
+  findNewId(heroesList: HeroeModel[]) {
+    // Create a set of all existing IDs
+    const existingIds = new Set(heroesList.map(hero => hero.id));
+
+    // Find the new ID
+    let newId = 1;
+    while (existingIds.has(newId)) {
+      newId++;
+    }
+
+    return newId;
+  }
+
 }
 
 export let fakeBackendProvider = {

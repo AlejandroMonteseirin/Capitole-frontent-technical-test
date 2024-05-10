@@ -1,1 +1,46 @@
-<p>heroes-edition works!</p>
+<mat-card class="mainCard">
+    <mat-card-title class="mainTitle">{{title}}</mat-card-title>
+
+    <mat-card-subtitle>
+        <div class="backButton">
+        </div>
+    </mat-card-subtitle>
+
+    <mat-card-content>
+
+        <mat-grid-list cols="2" rowHeight="6em">
+
+            <mat-grid-tile class="content-right">
+                <mat-form-field>
+                    <mat-label>Id</mat-label>
+                    <input matInput [(ngModel)]=" hero.id" disabled>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="content-left">
+                <mat-spinner class="loader" [ngClass]="{ 'hidden' : !loading }"></mat-spinner>
+            </mat-grid-tile>
+            <mat-grid-tile class="content-right">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput [(ngModel)]="hero.name">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="content-left">
+                <mat-spinner class="loader" [ngClass]="{ 'hidden' : !loading }"></mat-spinner>
+            </mat-grid-tile>
+
+
+        </mat-grid-list>
+
+        <mat-grid-list cols="2" rowHeight="6em">
+            <mat-grid-tile>
+                <button mat-stroked-button color="primary" routerLink="/heroesList">Back</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <button *ngIf="editing" mat-raised-button color="primary" (click)="saveChanges()">Save changes</button>
+                <button *ngIf="editing===false" mat-raised-button color="primary" (click)="saveCreate()">Create</button>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    </mat-card-content>
+</mat-card>

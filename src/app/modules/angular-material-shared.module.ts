@@ -9,9 +9,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -28,6 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatSnackBarModule, // notifications
     MatButtonModule, // buttons
     MatIconModule, // icons
+    MatDialogModule, // dialog
+
   ],
   exports: [
     CommonModule,
@@ -41,6 +44,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatSnackBarModule, // notifications
     MatButtonModule, // buttons
     MatIconModule, // icons
+    MatDialogModule, // dialog
+
+  ],
+  providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1000 } },
   ]
 })
 export class AngularMaterialSharedModule { }

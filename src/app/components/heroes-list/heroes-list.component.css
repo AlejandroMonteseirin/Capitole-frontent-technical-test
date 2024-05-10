@@ -9,7 +9,7 @@
   .mainCard {
     /* Reduce margins for smaller screens */
     min-height: 70vh;
-    min-width: 85vw;
+    min-width: 100vw;
   }
 }
 

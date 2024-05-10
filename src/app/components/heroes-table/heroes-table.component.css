@@ -3,12 +3,7 @@
     margin: 5%;
 }
 
-.loadingTable {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10%;
-}
+
 
 .filterTable {
     width: 100%;
@@ -28,4 +23,16 @@
 .mainTable {
     min-height: 300px;
 
+}
+
+.loadingTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.loadingSpiner {
+    max-width: 3em;
+    max-height: 3emem;
 }
