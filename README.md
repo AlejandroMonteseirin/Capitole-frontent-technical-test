@@ -7,7 +7,7 @@ Angular project in the latest LTS version (At the moment of the creation of this
 ## Project deployed
 
 In order to facilitate the review, the project has been deployed to Firebase. 
-The Url is:
+The Url is: https://capitole-tech-test-alexmp.web.app
 Firebase was configured using continuous integration with GitHub Actions so with every git push, a build of the project will be created and deployed automatically.
 
 
