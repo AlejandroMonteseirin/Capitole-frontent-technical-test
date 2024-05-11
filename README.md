@@ -3,18 +3,27 @@
 Angular project in the latest LTS version (At the moment of the creation of this test 16.2.12), Node 18.20.2 LTS.
 
 
-## How to run the project
+
+## Project deployed
+
+In order to facilitate the review, the project has been deployed to Firebase. 
+The Url is:
+Firebase was configured using continuous integration with GitHub Actions so with every git push, a build of the project will be created and deployed automatically.
+
+
+## How to run the project locally
 
 - Git clone the project, or download it. 
-- Open a console a use the command "npm install" in the project folder
-- Open a console a use the command "npm serve" in the project folder
+- Open a console a use the command `npm install` in the project folder
+- Open a console a use the command `npm ng serve` in the project folder
 - Navigate to `http://localhost:4200/`.
 
 
 ## Project Structure:
 
-*Aclaration:* 
+*Disclaimer:* 
 The whole project have a bit of over-engineering, this is not because I can't make it simpler, but rather to show my knowledge in all aspects of angular. (for example: adding Lazy loading to all the components is probably disproportionate to this project. However, I wanted to show that I am familiar with Lazy loading. The same occurs with interceptors, customPipes, sharedModule...).
+
 
 
 ## Routing:
@@ -28,6 +37,8 @@ There are 3 Lazy Loading modules:
 
 
 ## Components: 
+The pages were primarily built using Angular Material prebuilt components. However, for specific style modifications, custom .scss styles were employed, adhering to the BEM format whenever feasible.
+
 There are 2 main components:
 
 1. Listing (with filter)
@@ -39,12 +50,12 @@ There are 2 main components:
     - To complete the requiriment "*The first letter of the heroes must be capitalized*" I created a custom pipe "capitalizeFirst" and added in the name like this {{row.name | capitalizeFirst }}. However, later I found that there are a default pipe in angular called "titlecase", in any case I have left the custom pipe to show how to develop customs pipes.
     this way the name allways will have the first letter capitalized despite being not capitalized from the backend without modifying  the original value.
     - The modal to confirm the deletions is from Angular Material, using the component in /dialogs/delete-confirmation
+    - For mocking proposes, a button "Insert mock Heroes" has been added. It allows inserting 10 prebuilt heroes as long as there are no heroes in the list.
+
 2. Edition and creation
 
     - The same component (heroes-edition.component) is used for edition and creation. In creation, it checks from the route if it is an edition or a creation and change his functionality as well.
     - The form allows changing the name and the only validation is that the name must be at least 3 letters. It is done through the use of Angular reactive forms, using FormGroup and FormControl to manage the validations and the values.
-
-
 
 
 
@@ -58,40 +69,17 @@ A mock backend was created using a custom interceptor (mock-backend.interceptor.
 ## Tests
 
 For unit tests I used Karma Jasmine. All basic tests are operational, and a few example extra tests had been added. Attached screenshot of the results.
-To run karma just *ng test* in the folder of the project
+To run karma just `ng test` in the folder of the project
 
 
-For e2e Testing I used Cypress, and done a simple test that inicialice the data and checks for Spiderman hero to appear, attached video of cypress working. To run cypress, use "ng e2e"
+For e2e Testing I used Cypress, and done a simple test that inicialice the data and checks for Spiderman hero to appear, attached video of cypress working. To run cypress, use `ng e2e`.
 ![Cypress Testing](/readme_assets/cypressTesting.gif)
 
 
 #### Sources and resources:
     - Angular Material: https://material.angular.io/guides
     - Angular documentation: https://angular.io/docs
+    - BEM (Styles Sheets format) https://getbem.com/introduction/
     - Fake backend using interceptors: https://jasonwatmore.com/post/2022/11/30/angular-14-fake-backend-api-to-intercept-http-requests-in-development
 
 
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

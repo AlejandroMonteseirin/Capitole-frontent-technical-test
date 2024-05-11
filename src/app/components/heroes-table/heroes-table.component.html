@@ -1,5 +1,5 @@
 <div class="insertMockHeroes">
-    <button [ngClass]="{ 'hidden': loading || this.dataSource.data.length>0 }" (click)="insertHeroes()" mat-flat-button
+    <button [disabled]="loading || this.dataSource.data.length > 0" (click)="insertHeroes()" mat-flat-button
         color="primary">Insert mock heroes</button>
     <button (click)="createHeroe()" mat-flat-button color="accent">Create a new Heroe</button>
 </div>

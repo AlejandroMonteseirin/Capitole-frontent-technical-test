@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeroeModel } from 'src/app/models/heroeModel';
 import { MockApiService } from 'src/app/services/mock-api.service';
 
@@ -25,7 +25,7 @@ export class HeroesEditionComponent {
     name: new FormControl('')
   });
 
-  constructor(private route: ActivatedRoute, private mockApiService: MockApiService, private snackBar: MatSnackBar) {
+  constructor(private route: ActivatedRoute, private mockApiService: MockApiService, private snackBar: MatSnackBar, private router: Router) {
 
     // Get the ID from the route parameters and set the title and form values accordingly (edition or creation)
     this.route.params.subscribe(params => {
@@ -80,6 +80,7 @@ export class HeroesEditionComponent {
         next: () => {
           this.snackBar.open('Hero saved', 'Close');
           this.loading = false;
+          this.router.navigate(['heroesList']);
 
         },
         error: (error) => {
@@ -109,6 +110,7 @@ export class HeroesEditionComponent {
         next: () => {
           this.snackBar.open('New hero saved', 'Close');
           this.loading = false;
+          this.router.navigate(['heroesList']);
 
         },
         error: (error) => {
