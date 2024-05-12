@@ -1,10 +1,13 @@
 .mainCard {
   min-height: 40vh;
   min-width: 70vw;
+  margin-top: 10vh;
 
   @media (max-width: 768px) {
     min-height: 70vh;
     min-width: 100vw;
+    margin-top: 0vh;
+
   }
 
   &__title {

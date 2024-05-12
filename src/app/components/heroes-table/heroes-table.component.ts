@@ -100,9 +100,10 @@ export class HeroesTableComponent implements AfterViewInit {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          this.loading = true;
           this.mockApiService.deleteHeroe(id).subscribe(() => {
             this.snackBar.open('Heroe Deleted successfully', 'Close');
+            this.loading = true;
+
             this.getHeroes();
           });
         }

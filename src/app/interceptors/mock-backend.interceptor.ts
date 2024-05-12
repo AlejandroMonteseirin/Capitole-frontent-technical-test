@@ -131,13 +131,13 @@ export class MockBackendInterceptor implements HttpInterceptor {
     const response = new HttpResponse({ status: 200, body });
     console.log("HttpMockResponse", response);
     return of(response)
-      .pipe(delay(200)); // delay observable to simulate server api call
+      .pipe(delay(300)); // delay observable to simulate server api call
   }
 
   error(message: string) {
     // Its done with concatMap because throwError do not wait for the delay by default
     return of(null).pipe(
-      delay(200),
+      delay(300),
       concatMap(() => throwError(() => ({ error: { message } })))
     );
   }

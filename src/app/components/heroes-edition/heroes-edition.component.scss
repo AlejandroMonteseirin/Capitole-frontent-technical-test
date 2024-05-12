@@ -1,8 +1,11 @@
 .mainCard {
     min-width: 40vw;
+    margin-top: 10vh;
 
     @media (max-width: 768px) {
         min-width: 100vw;
+        margin-top: 0vh;
+
     }
 
     &__title {
@@ -10,12 +13,12 @@
         font-weight: bold;
         color: #333;
         text-align: center;
-        margin: 20px;
+        padding: 20px;
     }
 
     &__loader {
         max-width: 2em;
-        margin-bottom: 1em;
+        padding-bottom: 1em;
 
         &--hidden {
             visibility: hidden;
@@ -24,7 +27,7 @@
 
     &__backButton {
         text-align: center;
-        margin: 2em;
+        padding: 2em;
     }
 }
 
