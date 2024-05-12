@@ -21,8 +21,8 @@ Firebase was configured using continuous integration with GitHub Actions so with
 
 ## Project Structure:
 
-*Disclaimer:* 
-The whole project have a bit of over-engineering, this is not because I can't make it simpler, but rather to show my knowledge in all aspects of angular. (for example: adding Lazy loading to all the components is probably disproportionate to this project. However, I wanted to show that I am familiar with Lazy loading. The same occurs with interceptors, customPipes, sharedModule...).
+*Comments:* 
+The whole project has a bit of over-engineering, this is not because I can't make it simpler, but rather to show my knowledge in all aspects of angular. (for example: adding Lazy loading to all the components is probably disproportionate to this project. However, I wanted to show that I am familiar with Lazy loading. The same occurs with interceptors, customPipes, sharedModule...).
 
 
 
@@ -31,7 +31,7 @@ The whole project have a bit of over-engineering, this is not because I can't ma
 There are 3 routes, all of them using Lazy Loading:
 heroesList, heroesEdit/:id, heroesNew.
 There are 3 Lazy Loading modules:
-1. angular-material-sharedModule : have the import related with Angular Material, is shared with allmost all components
+1. angular-material-sharedModule: has the import related with Angular Material, is shared with allmost all components
 2. heroesEditionModule: related with the creation and the edition
 3. heroesListModule: in charge of the list and filter.
 
@@ -43,12 +43,10 @@ There are 2 main components:
 
 1. Listing (with filter)
 
-    heroes-list.component, that contains heroes-table.component.
-
+    - Formed by heroes-list.component, that contains heroes-table.component.
     - The filter is made from the Angular Material preset filter, and due to the requirement of "*minimizing the ammount of times that the events is lauched*" I have used a "keydown.enter" instead of "keyup" this way the filter launches when enter is pressed in the keyboard. Also, a button has been added that launch the filter to improve the user experience.
-    - The list consists of an Angular Material Table, with pagination and sorting. The pagination is done in the frontend for this prototype, if a lot of heroes is going to be added in the future, it will be recommended to paginate in the Server-Side to avoid overloading the frontend.
-    - To complete the requiriment "*The first letter of the heroes must be capitalized*" I created a custom pipe "capitalizeFirst" and added in the name like this {{row.name | capitalizeFirst }}. However, later I found that there are a default pipe in angular called "titlecase", in any case I have left the custom pipe to show how to develop customs pipes.
-    this way the name allways will have the first letter capitalized despite being not capitalized from the backend without modifying  the original value.
+    - The list consists of an Angular Material Table, with pagination and sorting. The pagination is done in the frontend for this prototype, if a lot of heroes are going to be added in the future, it will be recommended to paginate in the Server-Side to avoid overloading the frontend.
+    - To complete the requirement "*The first letter of the heroes must be capitalized*" I created a custom pipe "capitalizeFirst" and added in the name like this {{row.name | capitalizeFirst }}. However, later I found out that there are a default pipe in angular called "titlecase", in any case I have left the custom pipe to show how to develop customs pipes. By this way the name will always have the first letter capitalized, despite being not capitalized from the backend, without modifying the original value.
     - The modal to confirm the deletions is from Angular Material, using the component in /dialogs/delete-confirmation
     - For mocking proposes, a button "Insert mock Heroes" has been added. It allows inserting 10 prebuilt heroes as long as there are no heroes in the list.
 
@@ -71,8 +69,11 @@ A mock backend was created using a custom interceptor (mock-backend.interceptor.
 For unit tests I used Karma Jasmine. All basic tests are operational, and a few example extra tests had been added. Attached screenshot of the results.
 To run karma just `ng test` in the folder of the project
 
+![Karma results](/readme_assets/karmaResults.gif)
+
 
 For e2e Testing I used Cypress, and done a simple test that inicialice the data and checks for Spiderman hero to appear, attached video of cypress working. To run cypress, use `ng e2e`.
+
 ![Cypress Testing](/readme_assets/cypressTesting.gif)
 
 

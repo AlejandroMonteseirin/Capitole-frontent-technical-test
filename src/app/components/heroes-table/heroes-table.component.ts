@@ -67,7 +67,6 @@ export class HeroesTableComponent implements AfterViewInit {
 
     this.mockApiService.postHeroes(heroes).subscribe({
       next: (response) => {
-        console.log(response);
         // Si la llamada es exitosa, puedes hacer lo que necesites aquí
         this.snackBar.open('Mock Heroes Inserted', 'Close');
 

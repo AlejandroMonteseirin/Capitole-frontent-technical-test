@@ -13,9 +13,15 @@
 
 
 
-.insertMockHeroes {
+.functionalities {
     text-align: center;
     padding: 1em;
+
+    &__disabled {
+        font-size: small;
+        margin-bottom: 2em;
+        color: red;
+    }
 }
 
 .hidden {

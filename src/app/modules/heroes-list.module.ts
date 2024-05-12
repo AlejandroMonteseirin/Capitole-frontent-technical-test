@@ -12,7 +12,6 @@ import { HeroesListRoutingModule } from '../components/heroes-list/heroes-list.r
 import { DeleteConfirmationComponent } from '../components/dialogs/delete-confirmation/delete-confirmation.component';
 import { HeroesListComponent } from 'src/app/components/heroes-list/heroes-list.component';
 
-console.log('HeroesListModule');
 
 @NgModule({
   declarations: [HeroesListComponent, HeroesTableComponent, CapitalizeFirstPipe, DeleteConfirmationComponent],

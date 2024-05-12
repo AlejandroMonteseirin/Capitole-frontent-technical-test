@@ -1,7 +1,17 @@
-<div class="insertMockHeroes">
-    <button [disabled]="loading || this.dataSource.data.length > 0" (click)="insertHeroes()" mat-flat-button
-        color="primary">Insert mock heroes</button>
-    <button (click)="createHeroe()" mat-flat-button color="accent">Create a new Heroe</button>
+<div class="functionalities">
+    <div>
+        <button [disabled]="loading || dataSource.data.length > 0" (click)="insertHeroes()" mat-flat-button
+            color="primary">
+            Insert Mock Heroes
+        </button>
+    </div>
+    <div [class.hidden]="!loading && dataSource.data.length === 0" class="functionalities__disabled">*List must
+        be empty to insert bulk
+        data
+    </div>
+    <div>
+        <button (click)="createHeroe()" mat-flat-button color="accent">Create a new Heroe</button>
+    </div>
 </div>
 
 

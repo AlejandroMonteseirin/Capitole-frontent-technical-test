@@ -13,6 +13,7 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/mater
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule, // buttons
     MatIconModule, // icons
     MatDialogModule, // dialog
+    MatGridListModule, // grid
 
   ],
   exports: [
@@ -45,6 +47,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule, // buttons
     MatIconModule, // icons
     MatDialogModule, // dialog
+    MatGridListModule, // grid
 
   ],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1000 } },
